@@ -98,11 +98,10 @@ jobs:
     if: always() && github.event_name == 'pull_request'
     needs: [lint, test]
     permissions:
-      pull_requests: write
+      pull-requests: write
     steps:
       - name: Post Comment
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LINT_RESULT: ${{ needs.lint.result }}
           TEST_RESULT: ${{ needs.test.result }}
@@ -143,7 +142,7 @@ jobs:
     if: github.event_name == 'pull_request'
     permissions:
       contents: read
-      pull_requests: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
         with:
