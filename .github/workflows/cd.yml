@@ -111,10 +111,11 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           # 여기에 구현하세요!
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_LOWER }}
+          context: .
+          push: true
           tags: |
-            type=sha,prefix=
-            type=raw,value=latest
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_LOWER }}:${{ github.sha }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_LOWER }}:latest
 
       - name: Print image info
         run: |
